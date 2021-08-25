@@ -4,6 +4,7 @@ class UserStorage{
     static #users = {
         id: ["wnsxpfj"],
         psword: ["1234"],
+        name:["장"],
 };
 
 static getUsers (...fields){
@@ -27,6 +28,15 @@ static getUsersInfo(id) {
     }, {});
 
     return userInfo;
+
+}
+static save(userInfo) {
+    const users = this.#users;
+    users.id.push(userInfo.id);
+    users.name.push(userInfo.name);
+    users.psword.push(userInfo.psword);
+    console.log(users);
+
 
 }
 }
