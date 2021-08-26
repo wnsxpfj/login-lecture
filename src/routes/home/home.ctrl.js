@@ -1,14 +1,40 @@
 "use strict";
 
-const home = (req, res) => {
-    res.render("home/index");
+
+const { response } = require("express");
+const User = require("../../models/User");
+
+
+const output = {
+
+    home: (req, res) => {
+        res.render("home/index");
+    },
+    login: (req, res) => {
+        res.render("home/login");
+    },
+    register:(req, res) => {
+        res.render("home/register");
+    }
 };
 
-const login= (req, res) => {
-    res.render("home/login");
+
+
+const process = {
+    login: async (req, res) =>{
+        const user = new User(req.body);
+        const response = await user.login();
+        return res.json(response);
+        
+    },
+    register: (req, res) => {
+        const user = new User(req.body);
+        const response = user.register(); 
+        return res.json(response);
+    },
 };
 
 module.exports = {
-    home,
-    login,
+    output,
+    process,
 };
