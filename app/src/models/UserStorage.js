@@ -9,7 +9,7 @@ static getUserInfo(id) {
         const query = "SELECT * FROM users WHERE id = ?;";
    db.query(query, [id], (err,data) => {
     if(err) reject(`${err}`);
-    resolve(data[0]);
+    else resolve(data[0]);
    });
 });
 }
@@ -21,7 +21,7 @@ static async save(userInfo) {
    db.query(query,
      [userInfo.id, userInfo.name, userInfo.psword], (err) => {
     if(err) reject(`${err}`);
-    resolve({succes: true});
+    else resolve({succes: true});
 
    });
 });
